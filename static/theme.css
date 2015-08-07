@@ -1,0 +1,27 @@
+a {
+	cursor: pointer;
+}
+
+.progress-bar {
+	min-width: 2em;
+}
+
+.input-group-spaced {
+	margin-bottom: 14px;
+}
+
+.input-group-spaced {
+	margin-bottom: 14px;
+}
+
+.commitAuthor {
+	white-space: nowrap;
+}
+
+.commitDate {
+	white-space: nowrap;
+}
+
+.commitMsg {
+	white-space: pre-wrap;
+}

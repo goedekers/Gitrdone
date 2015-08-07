@@ -1,0 +1,14 @@
+<config>
+	<appId>fedex_quotes</appId>
+	<baseUri>/</baseUri>
+	<memcached>
+		<host>127.0.0.1</host>
+		<port>11211</port>
+	</memcached>
+	<timezone>America/Chicago</timezone>
+	<log>data/log/app.log</log>
+
+	<git>
+		<repoDir>/var/www/html</repoDir>
+	</git>
+</config>

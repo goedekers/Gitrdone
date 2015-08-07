@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+	<title>Gitrdone</title>
+	<base href="<?php echo App::get('config')->baseUri ?>">
+
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap-3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/fuelux/fuelux.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/theme.css">
+	
+	<script src="/static/jquery.js"></script>
+	<script src="/static/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+	<script src="/static/fuelux/fuelux.min.js"></script>
+	<script src="/static/angular.min.js"></script>
+	<script src="/static/main.js"></script>
+</head>
+<body ng-app="git">
+	<div class="container" ng-controller="search">
+		<div class="col-lg-12">
+			<div class="page-header">
+				<h3>Current branch: <span class="text-primary">{{ branch }}</span></h3>
+			</div>
+		</div>
+
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">Filters</div>
+				
+				<div class="panel-body">
+					<div class="col-lg-3">
+						<input type="text" id="query" class="form-control" placeholder="Query" ng-model="filterState.query">
+					</div>
+
+					<div class="col-lg-3">
+						<div class="btn-group selectlist" data-resize="auto" data-initialize="selectlist" id="author">
+							<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+								<span class="selected-label">&nbsp;</span>
+								<span class="caret"></span>
+								<span class="sr-only">Toggle Dropdown</span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li data-value=""><a>All authors</a></li>
+								<li data-value="{{ contributor }}" ng-repeat="(contributor, count) in contributors"><a>{{ contributor }} ({{ count }})</a></li>
+							</ul>
+							<input class="hidden hidden-field" name="author" readonly="readonly" aria-hidden="true" type="text" ng-model="filterState.contributor">
+						</div>
+					</div>
+				</div>
+
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Author</th>
+							<th>Timestamp</th>
+							<th>Message</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="commit in commits | filter:drill | limitTo: 1000" ng-class="{ 'text-muted': commit.merge }">
+							<td>
+								<a href="{{ commit.url }}" target="_blank">
+									<span class="glyphicon glyphicon-link"></span>
+								</a>
+							</td>
+							<td class="commitAuthor">{{ commit.author }}</td>
+							<td class="commitDate">{{ commit.date }}</td>
+							<td class="commitMsg" ng-class="{ 'text-primary': !commit.merge }">{{ commit.msg }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
