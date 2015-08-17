@@ -7,12 +7,16 @@ git.controller('search', function($scope, $http) {
 
 	$scope.filterState = {
 		contributor: '',
-		query: ''
+		query: '',
+		merge: false
 	};
 
 	$scope.drill = function(item) {
 		var contributor = $scope.filterState.contributor;
 		if(contributor != '' && contributor != item.author)
+			return false;
+
+		if(!$scope.filterState.merge && item.merge != '')
 			return false;
 
 		var query = $scope.filterState.query;

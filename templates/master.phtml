@@ -44,6 +44,11 @@
 							<input class="hidden hidden-field" name="author" readonly="readonly" aria-hidden="true" type="text" ng-model="filterState.contributor">
 						</div>
 					</div>
+
+					<div class="col-lg-3">
+						<input type="checkbox" id="merge" ng-model="filterState.merge" data-initialize="checkbox">
+						<label for="merge">Show merges</label>
+					</div>
 				</div>
 
 				<table class="table table-hover">
